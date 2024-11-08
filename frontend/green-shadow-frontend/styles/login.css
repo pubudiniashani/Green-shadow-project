@@ -1,4 +1,4 @@
-#header{
+#header-login{
     width: 100vw;
     height: 15vh;
     background-color: #57cc99;
@@ -10,9 +10,9 @@
     font-style: italic;
 }
 
-.signup{
+#login-card{
     width: 450px;
-    height: 400px;
+    height: 350px;
     padding: 20px;
     margin: auto;
     position: absolute;
@@ -24,18 +24,14 @@
     box-shadow: 20px 15px 10px rgba(0, 0, 0, 0.2);
 }
 
-.signupbtn{
+.btnlogin{
     background-color: #57cc99;
     color: white;
     position: relative;
-    top: 50px;
+    top: 75px;
     bottom: 0;
     left: 150px;
     right: 0;
     margin: auto;
-}
 
-body{
-    background-color: #edf2f4;
 }
-
