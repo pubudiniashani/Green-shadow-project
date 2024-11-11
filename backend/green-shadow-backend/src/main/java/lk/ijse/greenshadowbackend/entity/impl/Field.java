@@ -1,13 +1,12 @@
 package lk.ijse.greenshadowbackend.entity.impl;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.geo.Point;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,7 +24,7 @@ public class Field {
     private String image1;
     @Column(columnDefinition = "LONGTEXT")
     private String image2;
-
-
+    @OneToMany(mappedBy = "field",cascade = CascadeType.ALL)
+    private List<Crop> crops;
 
 }

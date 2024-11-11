@@ -1,9 +1,6 @@
 package lk.ijse.greenshadowbackend.entity.impl;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,4 +19,8 @@ public class Crop {
     private String season;
     @Column(columnDefinition = "LONGTEXT")
     private String cropImage;
+
+    @ManyToOne
+    @JoinColumn(name = "fieldId")
+    private Field field;
 }
