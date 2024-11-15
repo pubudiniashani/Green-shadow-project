@@ -32,7 +32,7 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.1'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.3.4'
+   /* implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '3.3.4'*/
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 }
 

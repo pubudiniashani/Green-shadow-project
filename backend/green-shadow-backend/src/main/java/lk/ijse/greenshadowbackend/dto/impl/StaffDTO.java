@@ -3,6 +3,7 @@ package lk.ijse.greenshadowbackend.dto.impl;
 import lk.ijse.greenshadowbackend.dto.StaffStatus;
 import lk.ijse.greenshadowbackend.entity.Gender;
 import lk.ijse.greenshadowbackend.entity.Role;
+import lk.ijse.greenshadowbackend.entity.impl.Field;
 import lk.ijse.greenshadowbackend.entity.impl.Vehicle;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,5 +26,6 @@ public class StaffDTO implements StaffStatus {
     private String address;
     private String contactNumber;
     private Role role;
+    private List<Field> fields;
     private List<Vehicle> vehicles;
 }
