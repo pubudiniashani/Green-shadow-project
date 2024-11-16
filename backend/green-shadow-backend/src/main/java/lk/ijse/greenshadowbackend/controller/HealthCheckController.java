@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping("api/v1/health")
 public class HealthCheckController {
     @GetMapping
     public String healthTest(){
-        return "Green shadow controller working";
+        return "Green shadow health controller working";
     }
 
 }
