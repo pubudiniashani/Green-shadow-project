@@ -31,7 +31,7 @@ public class UserController {
             userService.saveUser(userDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
 
-        }  catch (Exception e) {
+        } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -59,5 +59,14 @@ public class UserController {
         }
     }
 
+    @PutMapping(value = "/{userId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateUser(@PathVariable String userId, @RequestBody UserDTO userDTO) {
 
+           try {
+               userService.updateUser(userId,userDTO);
+           }catch (UserNotFoundException e){
+               e.printStackTrace();
+           }
+    }
 }

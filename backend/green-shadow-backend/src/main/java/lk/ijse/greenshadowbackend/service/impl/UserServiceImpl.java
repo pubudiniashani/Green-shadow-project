@@ -48,8 +48,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(String userId, UserDTO userDTO) {
         Optional<User> tmpUser = userDao.findById(userId);
+
         if (tmpUser.isPresent()){
-            tmpUser.get().setUserId(userDTO.getUserId());
             tmpUser.get().setUserName(userDTO.getUserName());
             tmpUser.get().setPassword(userDTO.getPassword());
             tmpUser.get().setRole(userDTO.getRole());
