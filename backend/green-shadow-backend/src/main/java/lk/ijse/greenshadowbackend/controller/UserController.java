@@ -1,7 +1,6 @@
 package lk.ijse.greenshadowbackend.controller;
 
 import lk.ijse.greenshadowbackend.dto.impl.UserDTO;
-import lk.ijse.greenshadowbackend.entity.Role;
 import lk.ijse.greenshadowbackend.exception.UserNotFoundException;
 import lk.ijse.greenshadowbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 import java.util.regex.Pattern;
 
 @RestController
@@ -19,12 +18,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    /*@GetMapping
-    public String healthTest(){
-        return "user controller working";
-    }
-*/
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> saveUser(@RequestBody UserDTO userDTO) {
         try {
