@@ -20,20 +20,22 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
-                    produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void> saveUser(@RequestBody UserDTO userDTO){
-
+    /*@GetMapping
+    public String healthTest(){
+        return "user controller working";
+    }
+*/
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> saveUser(@RequestBody UserDTO userDTO) {
         try {
-
             userService.saveUser(userDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
 
         }  catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
+
 
     @DeleteMapping(value = "/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable("userId") String userId) {
