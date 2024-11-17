@@ -73,7 +73,6 @@ public class FieldController {
 
             @PathVariable("fieldId") String fieldId
     ){
-
         try {
 
             var buildDTO = new FieldDTO();
@@ -101,7 +100,6 @@ public class FieldController {
             throw new RuntimeException("Failed to process images", e);
         }
     }
-
     @DeleteMapping(value = "/{fieldId}")
     public ResponseEntity<Void> deleteUser(@PathVariable("fieldId") String fieldId) {
 
@@ -121,5 +119,6 @@ public class FieldController {
         return fieldService.getAllFields();
     }
 }
+
 
 
