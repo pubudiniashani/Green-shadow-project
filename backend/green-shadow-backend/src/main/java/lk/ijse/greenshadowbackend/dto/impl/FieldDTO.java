@@ -20,6 +20,6 @@ public class FieldDTO implements FieldStatus {
     private double extentSize;
     private String image1;
     private String image2;
-    private List<Crop> crops;
-    private List<Staff> staff;
+    private List<String> crops;
+    private List<String> staff;
 }
