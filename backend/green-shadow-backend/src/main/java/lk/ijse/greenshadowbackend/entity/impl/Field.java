@@ -24,9 +24,12 @@ public class Field {
     private String image1;
     @Column(columnDefinition = "LONGTEXT")
     private String image2;
+
     @OneToMany(mappedBy = "field",cascade = CascadeType.ALL)
     private List<Crop> crops;
 
     @ManyToMany(mappedBy = "fields")
     private List<Staff> staff;
+
+
 }

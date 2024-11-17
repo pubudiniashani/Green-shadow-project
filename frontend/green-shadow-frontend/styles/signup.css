@@ -19,13 +19,13 @@
     top: 150px;
     left: 0;
     right: 50px;
-    /*background-color:#c7f9cc;*/
+    background-color:#c7f9cc;
     border-radius: 10px;
     box-shadow: 20px 15px 10px rgba(0, 0, 0, 0.2);
-    background-image: url('../assets/crop.jpg');
-    background-size: cover; /* or contain */
+    /*background-image: url('../assets/crop.jpg');
+    background-size: cover; !* or contain *!
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center;*/
 }
 
 .signupbtn{
