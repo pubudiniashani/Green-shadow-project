@@ -44,4 +44,6 @@ public class Staff {
     @ManyToMany(mappedBy = "staffLogs",cascade = CascadeType.ALL)
     private List<Log> logs;
 
+    @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Equipment> equipment;
 }

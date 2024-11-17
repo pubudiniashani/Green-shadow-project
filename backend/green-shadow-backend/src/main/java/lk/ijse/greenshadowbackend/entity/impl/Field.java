@@ -34,4 +34,6 @@ public class Field {
     @ManyToMany(mappedBy = "fieldLogs",cascade = CascadeType.ALL)
     private List<Log> logs;
 
+    @OneToMany(mappedBy = "field", cascade = CascadeType.ALL)
+    private List<Equipment> equipment;
 }
