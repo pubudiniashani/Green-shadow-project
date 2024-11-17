@@ -59,8 +59,45 @@ public class FieldController {
         }
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping(value = "/{fieldId}",consumes =  MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void updateField(
+            @RequestParam("name") String name,
+            @RequestParam("location") String location,
+            @RequestParam("extentSize") double extentSize,
+            @RequestParam("image1") MultipartFile image1,
+            @RequestParam("image2") MultipartFile image2,
 
+            @PathVariable("fieldId") String fieldId
+    ){
 
+        try {
+
+            var buildDTO = new FieldDTO();
+            buildDTO.setFieldId(fieldId);
+            buildDTO.setName(name);
+            buildDTO.setLocation(location);
+            buildDTO.setExtentSize(extentSize);
+
+            if (!image1.isEmpty()) {
+
+                String base64Image1 = AppUtil.imageToBase64(image1.getBytes());
+                buildDTO.setImage1(base64Image1);
+            }
+
+            if (!image2.isEmpty()) {
+
+                String base64Image2 = AppUtil.imageToBase64(image2.getBytes());
+                buildDTO.setImage2(base64Image2);
+            }
+
+            fieldService.updateField(fieldId,buildDTO);
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            throw new RuntimeException("Failed to process images", e);
+        }
+    }
 
 }
 
