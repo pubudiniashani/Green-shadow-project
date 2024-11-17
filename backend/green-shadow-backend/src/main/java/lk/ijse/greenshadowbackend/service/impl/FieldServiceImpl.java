@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -40,8 +41,6 @@ public class FieldServiceImpl implements FieldService {
             throw new RuntimeException("Failed to save field: " + e.getMessage(), e);
         }
     }
-
-
     @Override
     public void updateField(String fieldId, FieldDTO fieldDTO) {
         Optional<Field> tmpUser = fieldDao.findById(fieldId);
@@ -53,7 +52,6 @@ public class FieldServiceImpl implements FieldService {
             tmpUser.get().setImage2(fieldDTO.getImage2());
         }
     }
-
     @Override
     public void deleteField(String fieldId) {
         Optional<Field>  existedField=  fieldDao.findById(fieldId);
@@ -62,5 +60,10 @@ public class FieldServiceImpl implements FieldService {
         }else {
             fieldDao.deleteById(fieldId);
         }
+    }
+    @Override
+    public List<FieldDTO> getAllFields() {
+        List<Field> allFields = fieldDao.findAll();
+        return mapping.asFieldDTOlist(allFields);
     }
 }

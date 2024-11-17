@@ -2,6 +2,7 @@ package lk.ijse.greenshadowbackend.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lk.ijse.greenshadowbackend.dto.impl.FieldDTO;
+import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.FieldService;
 import lk.ijse.greenshadowbackend.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+
+import java.util.List;
+
 
 
 @RestController
@@ -99,6 +102,24 @@ public class FieldController {
         }
     }
 
+    @DeleteMapping(value = "/{fieldId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("fieldId") String fieldId) {
+
+        try {
+            fieldService.deleteField(fieldId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (FieldNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<FieldDTO> getAllFields(){
+        return fieldService.getAllFields();
+    }
 }
 
 
