@@ -18,7 +18,7 @@ public class Field {
     @Id
     private String fieldId;
     private String name;
-    private Point location;
+    private String location;
     private double extentSize;
     @Column(columnDefinition = "LONGTEXT")
     private String image1;
