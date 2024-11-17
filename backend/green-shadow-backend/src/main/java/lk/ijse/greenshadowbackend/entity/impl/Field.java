@@ -28,8 +28,10 @@ public class Field {
     @OneToMany(mappedBy = "field",cascade = CascadeType.ALL)
     private List<Crop> crops;
 
-    @ManyToMany(mappedBy = "fields")
+    @ManyToMany(mappedBy = "fields",cascade = CascadeType.ALL)
     private List<Staff> staff;
 
+    @ManyToMany(mappedBy = "fieldLogs",cascade = CascadeType.ALL)
+    private List<Log> logs;
 
 }

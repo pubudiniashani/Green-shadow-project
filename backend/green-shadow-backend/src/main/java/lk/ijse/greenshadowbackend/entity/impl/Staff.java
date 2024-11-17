@@ -40,4 +40,8 @@ public class Staff {
 
     @OneToMany(mappedBy = "staff")
     private List<Vehicle> vehicles;
+
+    @ManyToMany(mappedBy = "staffLogs",cascade = CascadeType.ALL)
+    private List<Log> logs;
+
 }
