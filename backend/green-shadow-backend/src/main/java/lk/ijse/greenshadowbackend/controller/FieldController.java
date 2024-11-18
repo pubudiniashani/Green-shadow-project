@@ -1,6 +1,4 @@
 package lk.ijse.greenshadowbackend.controller;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.http.HttpServletRequest;
 import lk.ijse.greenshadowbackend.dto.impl.FieldDTO;
 import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.FieldService;
@@ -12,10 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-
 import java.util.List;
-
-
 
 @RestController
 @RequestMapping("api/v1/field")
@@ -25,7 +20,7 @@ public class FieldController {
     private FieldService fieldService;
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> saveField(
-            @RequestParam("fieldId") String fieldId,
+            /*@RequestParam("fieldId") String fieldId,*/
             @RequestParam("name") String name,
             @RequestParam("location") String location,
             @RequestParam("extentSize") double extentSize,
@@ -36,7 +31,7 @@ public class FieldController {
         try {
 
             var buildDTO = new FieldDTO();
-            buildDTO.setFieldId(fieldId);
+            /*buildDTO.setFieldId(fieldId);*/
             buildDTO.setName(name);
             buildDTO.setLocation(location);
             buildDTO.setExtentSize(extentSize);

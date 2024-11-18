@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 @Service
@@ -36,6 +37,7 @@ public class FieldServiceImpl implements FieldService {
     public void saveField(FieldDTO fieldDTO) {
         try {
             Field fieldEntity = mapping.toFieldEntity(fieldDTO);
+            fieldEntity.setFieldId(UUID.randomUUID().toString());
             fieldDao.save(fieldEntity); // Save to database
         } catch (Exception e) {
             throw new RuntimeException("Failed to save field: " + e.getMessage(), e);
