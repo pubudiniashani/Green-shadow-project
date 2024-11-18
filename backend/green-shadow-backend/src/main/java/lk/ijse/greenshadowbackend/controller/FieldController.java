@@ -20,18 +20,16 @@ public class FieldController {
     private FieldService fieldService;
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> saveField(
-            /*@RequestParam("fieldId") String fieldId,*/
             @RequestParam("name") String name,
             @RequestParam("location") String location,
             @RequestParam("extentSize") double extentSize,
-            @RequestParam("image1") MultipartFile image1,
-            @RequestParam("image2") MultipartFile image2
+            @RequestParam(value = "image1",required = false) MultipartFile image1,
+            @RequestParam(value = "image2",required = false) MultipartFile image2
             ){
 
         try {
 
             var buildDTO = new FieldDTO();
-            /*buildDTO.setFieldId(fieldId);*/
             buildDTO.setName(name);
             buildDTO.setLocation(location);
             buildDTO.setExtentSize(extentSize);
