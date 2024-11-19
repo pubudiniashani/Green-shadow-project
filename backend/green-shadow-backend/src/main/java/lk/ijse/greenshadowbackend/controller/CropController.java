@@ -23,7 +23,8 @@ public class CropController {
             @RequestParam("scientificName") String scientificName,
             @RequestParam("category") String category,
             @RequestParam("season") String season,
-            @RequestParam(value = "cropImage",required = false)MultipartFile cropImage
+            @RequestParam(value = "cropImage",required = false)MultipartFile cropImage,
+            @RequestParam("field") String field
             ){
 
         try {
@@ -33,6 +34,8 @@ public class CropController {
             buildDTO.setScientificName(scientificName);
             buildDTO.setCategory(category);
             buildDTO.setSeason(season);
+            buildDTO.setField(field);
+            System.out.println(field );
 
             if (!cropImage.isEmpty()) {
 
