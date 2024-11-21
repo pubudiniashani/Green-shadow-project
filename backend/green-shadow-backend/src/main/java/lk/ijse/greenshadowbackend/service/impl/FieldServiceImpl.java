@@ -25,13 +25,6 @@ public class FieldServiceImpl implements FieldService {
 
     @Autowired
     private Mapping mapping;
-   /* @Override
-    public void saveField(FieldDTO fieldDTO) {
-        Field savedField = fieldDao.save(mapping.toFieldEntity(fieldDTO));
-        if (savedField == null){
-            throw new RuntimeException("Field not found");
-        }
-    }*/
 
     @Override
     public void saveField(FieldDTO fieldDTO) {
