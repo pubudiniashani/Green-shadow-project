@@ -1,6 +1,7 @@
 package lk.ijse.greenshadowbackend.controller;
 
 import lk.ijse.greenshadowbackend.dto.impl.CropDTO;
+import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.CropService;
 import lk.ijse.greenshadowbackend.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +53,57 @@ public class CropController {
         }
 
     }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping(value = "/{cropId}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void updateCrop(
+            @RequestParam("commonName") String commonName,
+            @RequestParam("scientificName") String scientificName,
+            @RequestParam("category") String category,
+            @RequestParam("season") String season,
+            @RequestParam(value = "cropImage",required = false)MultipartFile cropImage,
+            @RequestParam("field") String field,
+
+            @PathVariable("cropId") String cropId
+        ) {
+        try {
+
+            var buildDTO = new CropDTO();
+            buildDTO.setCommonName(commonName);
+            buildDTO.setScientificName(scientificName);
+            buildDTO.setCategory(category);
+            buildDTO.setSeason(season);
+            buildDTO.setField(field);
+
+
+            if (!cropImage.isEmpty()) {
+
+                String base64Image1 = AppUtil.imageToBase64(cropImage.getBytes());
+                buildDTO.setCropImage(base64Image1);
+            }
+
+            cropService.updateCrop(cropId,buildDTO);
+        }catch (Exception e){
+
+            e.printStackTrace();
+            throw new RuntimeException("Failed to process images", e);
+        }
+
+    }
+
+    @DeleteMapping(value = "/{cropId}")
+    public ResponseEntity<Void> deleteCrop(@PathVariable("cropId") String cropId) {
+
+        try {
+            cropService.deleteCrop(cropId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (FieldNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
 }
