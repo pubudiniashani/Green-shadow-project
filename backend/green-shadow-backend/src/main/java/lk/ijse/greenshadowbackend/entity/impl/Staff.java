@@ -27,6 +27,7 @@ public class Staff {
     private Date dob;
     private String address;
     private String contactNumber;
+    private String email;
     @Enumerated(EnumType.STRING)
     private Role role;
 

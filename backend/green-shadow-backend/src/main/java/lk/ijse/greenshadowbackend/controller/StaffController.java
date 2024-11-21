@@ -1,6 +1,7 @@
 package lk.ijse.greenshadowbackend.controller;
 
 import lk.ijse.greenshadowbackend.dto.impl.StaffDTO;
+import lk.ijse.greenshadowbackend.exception.UserNotFoundException;
 import lk.ijse.greenshadowbackend.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +23,17 @@ public class StaffController {
 
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping(value = "/{staffId}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateStaff(@PathVariable String staffId, @RequestBody StaffDTO staffDTO) {
+
+        try {
+            staffService.updateStaff(staffId,staffDTO);
+        }catch (UserNotFoundException e){
+            e.printStackTrace();
         }
     }
 }
