@@ -1,6 +1,7 @@
 package lk.ijse.greenshadowbackend.controller;
 
 import lk.ijse.greenshadowbackend.dto.impl.StaffDTO;
+import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.exception.UserNotFoundException;
 import lk.ijse.greenshadowbackend.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,21 @@ public class StaffController {
             staffService.updateStaff(staffId,staffDTO);
         }catch (UserNotFoundException e){
             e.printStackTrace();
+        }
+    }
+
+    @DeleteMapping(value = "/{staffId}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("staffId") String staffId) {
+
+        try {
+            staffService.deleteStaff(staffId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (FieldNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
