@@ -1,5 +1,6 @@
 package lk.ijse.greenshadowbackend.service.impl;
 
+import lk.ijse.greenshadowbackend.dao.FieldDao;
 import lk.ijse.greenshadowbackend.dao.StaffDao;
 import lk.ijse.greenshadowbackend.dto.impl.StaffDTO;
 import lk.ijse.greenshadowbackend.entity.impl.Staff;
@@ -9,6 +10,7 @@ import lk.ijse.greenshadowbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +22,9 @@ public class StaffServiceImpl implements StaffService {
 
     @Autowired
     private StaffDao staffDao;
+
+    @Autowired
+    private FieldDao fieldDao;
 
     @Autowired
     private Mapping mapping;

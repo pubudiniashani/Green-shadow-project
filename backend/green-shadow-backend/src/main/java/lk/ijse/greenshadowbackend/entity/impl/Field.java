@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.geo.Point;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -29,7 +30,7 @@ public class Field {
     private List<Crop> crops;
 
     @ManyToMany(mappedBy = "fields",cascade = CascadeType.ALL)
-    private List<Staff> staff;
+    private List<Staff> staff = new ArrayList<>();
 
     @ManyToMany(mappedBy = "fieldLogs",cascade = CascadeType.ALL)
     private List<Log> logs;
