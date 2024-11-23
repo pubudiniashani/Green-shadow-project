@@ -7,6 +7,7 @@ import lk.ijse.greenshadowbackend.entity.impl.Crop;
 import lk.ijse.greenshadowbackend.entity.impl.Field;
 import lk.ijse.greenshadowbackend.entity.impl.Staff;
 import lk.ijse.greenshadowbackend.entity.impl.Vehicle;
+import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.VehicleService;
 import lk.ijse.greenshadowbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,10 +65,17 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public void deleteVehicle(String vehicleId) {
 
+        Optional<Vehicle>  existedVehicle =  vehicleDao.findById(vehicleId);
+        if (!existedVehicle.isPresent()){
+            throw new FieldNotFoundException("Crop with this ID is not found");
+        }else {
+            vehicleDao.deleteById(vehicleId);
+        }
     }
 
     @Override
     public List<VehicleDTO> getAllVehicles() {
-        return null;
+        List<Vehicle> allVehicles = vehicleDao.findAll();
+        return mapping.asVehicleDTOlist(allVehicles);
     }
 }

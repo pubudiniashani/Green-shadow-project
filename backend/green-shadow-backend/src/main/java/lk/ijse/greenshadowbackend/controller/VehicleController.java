@@ -3,6 +3,7 @@ package lk.ijse.greenshadowbackend.controller;
 import lk.ijse.greenshadowbackend.dto.impl.CropDTO;
 import lk.ijse.greenshadowbackend.dto.impl.StaffDTO;
 import lk.ijse.greenshadowbackend.dto.impl.VehicleDTO;
+import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.exception.UserNotFoundException;
 import lk.ijse.greenshadowbackend.service.VehicleService;
 import lk.ijse.greenshadowbackend.util.AppUtil;
@@ -12,6 +13,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/vehicle")
@@ -40,6 +43,27 @@ public class VehicleController {
             e.printStackTrace();
         }
     }
+
+    @DeleteMapping(value = "/{vehicleId}")
+    public ResponseEntity<Void> deleteVehicle(@PathVariable("vehicleId") String vehicleId) {
+
+        try {
+            vehicleService.deleteVehicle(vehicleId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (FieldNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<VehicleDTO> getAllCrops(){
+        return vehicleService.getAllVehicles();
+    }
+
 
 
 }
