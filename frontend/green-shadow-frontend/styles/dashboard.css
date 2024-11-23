@@ -35,7 +35,7 @@ body {
 
 .sidebar .nav-link {
     color: black;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
     padding: 12px 15px;
     text-align: left;
@@ -60,4 +60,33 @@ body {
     padding-right: 20px;
 }
 
+.card {
+    max-width: 250px; /* Limits the card width */
+    margin: 0 auto; /* Centers the card in its column */
+    border: 1px solid #ddd; /* Adds a subtle border */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
+}
 
+#d1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 200px;
+}
+
+h1 {
+    margin: 0; /* Remove default margin for proper centering */
+}
+
+h1 span:first-child {
+    font-size: 2rem; /* Style the first span */
+    font-style: italic;
+}
+
+h1 span:last-child {
+    font-size: 2rem; /* Style the second span */
+    margin-top: 10px; /* Add spacing below the first span */
+}

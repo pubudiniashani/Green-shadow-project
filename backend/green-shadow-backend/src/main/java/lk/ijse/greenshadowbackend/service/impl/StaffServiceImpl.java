@@ -3,6 +3,7 @@ package lk.ijse.greenshadowbackend.service.impl;
 import lk.ijse.greenshadowbackend.dao.FieldDao;
 import lk.ijse.greenshadowbackend.dao.StaffDao;
 import lk.ijse.greenshadowbackend.dto.impl.StaffDTO;
+import lk.ijse.greenshadowbackend.entity.impl.Field;
 import lk.ijse.greenshadowbackend.entity.impl.Staff;
 import lk.ijse.greenshadowbackend.exception.UserNotFoundException;
 import lk.ijse.greenshadowbackend.service.StaffService;
@@ -12,9 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 @Transactional
@@ -31,12 +30,39 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public void saveStaff(StaffDTO staffDTO) {
-        try {
+       /* try {
 
             Staff staff = mapping.toStaffEntity(staffDTO);
             staff.setStaffId(UUID.randomUUID().toString());
             staffDao.save(staff);
         } catch (Exception e) {
+            throw new RuntimeException("Error saving user", e);
+        }*/
+
+        try {
+            Staff staffEntity = mapping.toStaffEntity(staffDTO);
+            staffEntity.setStaffId(UUID.randomUUID().toString());
+            System.out.println("dto - " + staffDTO);
+
+            if (staffDTO.getFields() != null && !staffDTO.getFields().isEmpty()) {
+                // Retrieve and associate fields
+                List<Field> associatedFields = new ArrayList<>();
+                for (String fieldId : staffDTO.getFields()) {
+                    Field field = fieldDao.findById(fieldId)
+                            .orElseThrow(() -> new IllegalArgumentException("Field not found with ID: " + fieldId));
+                    associatedFields.add(field);
+                }
+                staffEntity.setFields(associatedFields);
+                System.out.println("staffEntity - " + staffEntity);
+            }
+
+            // Save the staff entity
+            staffDao.save(staffEntity);
+
+
+        }
+        catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("Error saving user", e);
         }
     }
