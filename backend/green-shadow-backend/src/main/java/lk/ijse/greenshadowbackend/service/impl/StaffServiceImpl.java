@@ -59,7 +59,6 @@ public class StaffServiceImpl implements StaffService {
             // Save the staff entity
             staffDao.save(staffEntity);
 
-
         }
         catch (Exception e) {
             e.printStackTrace();
@@ -82,6 +81,8 @@ public class StaffServiceImpl implements StaffService {
             tmpStaff.get().setContactNumber(staffDTO.getContactNumber());
             tmpStaff.get().setEmail(staffDTO.getEmail());
             tmpStaff.get().setRole(staffDTO.getRole());
+
+
 
         }
     }
