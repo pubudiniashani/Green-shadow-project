@@ -3,6 +3,8 @@ package lk.ijse.greenshadowbackend.service.impl;
 import lk.ijse.greenshadowbackend.dao.StaffDao;
 import lk.ijse.greenshadowbackend.dao.VehicleDao;
 import lk.ijse.greenshadowbackend.dto.impl.VehicleDTO;
+import lk.ijse.greenshadowbackend.entity.impl.Crop;
+import lk.ijse.greenshadowbackend.entity.impl.Field;
 import lk.ijse.greenshadowbackend.entity.impl.Staff;
 import lk.ijse.greenshadowbackend.entity.impl.Vehicle;
 import lk.ijse.greenshadowbackend.service.VehicleService;
@@ -46,7 +48,17 @@ public class VehicleServiceImpl implements VehicleService {
 
     @Override
     public void updateVehicle(String vehicleId, VehicleDTO vehicleDTO) {
+        Vehicle tmpVehicle = vehicleDao.findById(vehicleId).get();
 
+        Optional<Staff> staff = staffDao.findById(vehicleDTO.getStaff());
+        tmpVehicle.setLicenseNumber(vehicleDTO.getLicenseNumber());
+        tmpVehicle.setVehicleCategory(vehicleDTO.getVehicleCategory());
+        tmpVehicle.setFuelType(vehicleDTO.getFuelType());
+        tmpVehicle.setStatus(vehicleDTO.getStatus());
+        tmpVehicle.setRemarks(vehicleDTO.getRemarks());
+        if (!staff.isEmpty()){
+            tmpVehicle.setStaff(staff.get());
+        }
     }
 
     @Override
