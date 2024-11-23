@@ -3,8 +3,6 @@ package lk.ijse.greenshadowbackend.service.impl;
 import lk.ijse.greenshadowbackend.dao.StaffDao;
 import lk.ijse.greenshadowbackend.dao.VehicleDao;
 import lk.ijse.greenshadowbackend.dto.impl.VehicleDTO;
-import lk.ijse.greenshadowbackend.entity.impl.Crop;
-import lk.ijse.greenshadowbackend.entity.impl.Field;
 import lk.ijse.greenshadowbackend.entity.impl.Staff;
 import lk.ijse.greenshadowbackend.entity.impl.Vehicle;
 import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
