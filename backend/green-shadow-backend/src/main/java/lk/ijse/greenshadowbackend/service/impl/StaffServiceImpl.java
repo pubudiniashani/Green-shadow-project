@@ -68,7 +68,7 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public void updateStaff(String staffId, StaffDTO staffDTO) {
-        Optional<Staff> tmpStaff = staffDao.findById(staffId);
+        /*Optional<Staff> tmpStaff = staffDao.findById(staffId);
 
         if (tmpStaff.isPresent()){
             tmpStaff.get().setFirstName(staffDTO.getFirstName());
@@ -82,9 +82,42 @@ public class StaffServiceImpl implements StaffService {
             tmpStaff.get().setEmail(staffDTO.getEmail());
             tmpStaff.get().setRole(staffDTO.getRole());
 
+        }*/
 
+        Staff tmpStaff = staffDao.findById(staffId)
+                .orElseThrow(() -> new IllegalArgumentException("Field not found with ID: " + staffId));
 
+        tmpStaff.setFirstName(staffDTO.getFirstName());
+        tmpStaff.setLastName(staffDTO.getLastName());
+        tmpStaff.setDesignation(staffDTO.getDesignation());
+        tmpStaff.setGender(staffDTO.getGender());
+        tmpStaff.setJointedDate(staffDTO.getJointedDate());
+        tmpStaff.setDob(staffDTO.getDob());
+        tmpStaff.setAddress(staffDTO.getAddress());
+        tmpStaff.setContactNumber(staffDTO.getContactNumber());
+        tmpStaff.setEmail(staffDTO.getEmail());
+        tmpStaff.setRole(staffDTO.getRole());
+
+        if (staffDTO.getFields() != null && !staffDTO.getFields().isEmpty()) {
+            tmpStaff.getFields().clear();
+
+            for (String fieldId:staffDTO.getFields()) {
+                Field field = fieldDao.findById(fieldId)
+                        .orElseThrow(() -> new IllegalArgumentException("field not found " ));
+
+                if (!field.getStaff().contains(tmpStaff)) {
+                    field.getStaff().add(tmpStaff);
+                }
+
+                tmpStaff.getFields().add(field);
+            }
+
+        }else {
+            tmpStaff.getFields().clear();
         }
+
+        staffDao.save(tmpStaff);
+
     }
 
     @Override

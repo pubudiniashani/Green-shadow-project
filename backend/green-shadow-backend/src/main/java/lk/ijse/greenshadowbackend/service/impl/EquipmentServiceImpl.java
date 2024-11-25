@@ -1,4 +1,7 @@
 package lk.ijse.greenshadowbackend.service.impl;
 
-public class EquipmentServiceImpl {
+import lk.ijse.greenshadowbackend.service.EquipmentService;
+
+public class EquipmentServiceImpl implements EquipmentService {
+
 }
