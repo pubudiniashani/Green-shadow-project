@@ -8,6 +8,7 @@ import lk.ijse.greenshadowbackend.entity.impl.Equipment;
 import lk.ijse.greenshadowbackend.entity.impl.Field;
 import lk.ijse.greenshadowbackend.entity.impl.Staff;
 import lk.ijse.greenshadowbackend.entity.impl.Vehicle;
+import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.EquipmentService;
 import lk.ijse.greenshadowbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,12 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public void deleteEquipment(String equipmentId) {
+        Optional<Equipment> existedEquipment = equipmentDao.findById(equipmentId);
+        if (!existedEquipment.isPresent()){
+            throw new FieldNotFoundException("Crop with this ID is not found");
+        }else {
+            equipmentDao.deleteById(equipmentId);
+        }
 
     }
 
