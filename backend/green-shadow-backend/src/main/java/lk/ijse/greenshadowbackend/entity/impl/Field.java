@@ -1,5 +1,6 @@
 package lk.ijse.greenshadowbackend.entity.impl;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,6 +31,7 @@ public class Field {
     private List<Crop> crops;
 
     @ManyToMany(mappedBy = "fields",cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Staff> staff = new ArrayList<>();
 
     @ManyToMany(mappedBy = "fieldLogs",cascade = CascadeType.ALL)

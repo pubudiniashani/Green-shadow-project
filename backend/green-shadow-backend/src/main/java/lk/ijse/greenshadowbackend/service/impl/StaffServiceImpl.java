@@ -42,10 +42,9 @@ public class StaffServiceImpl implements StaffService {
         try {
             Staff staffEntity = mapping.toStaffEntity(staffDTO);
             staffEntity.setStaffId(UUID.randomUUID().toString());
-            System.out.println("dto - " + staffDTO);
+            //System.out.println("dto - " + staffDTO);
 
             if (staffDTO.getFields() != null && !staffDTO.getFields().isEmpty()) {
-                // Retrieve and associate fields
                 List<Field> associatedFields = new ArrayList<>();
                 for (String fieldId : staffDTO.getFields()) {
                     Field field = fieldDao.findById(fieldId)
@@ -53,10 +52,9 @@ public class StaffServiceImpl implements StaffService {
                     associatedFields.add(field);
                 }
                 staffEntity.setFields(associatedFields);
-                System.out.println("staffEntity - " + staffEntity);
+                //System.out.println("staffEntity - " + staffEntity);
             }
 
-            // Save the staff entity
             staffDao.save(staffEntity);
 
         }
@@ -68,7 +66,7 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public void updateStaff(String staffId, StaffDTO staffDTO) {
-        /*Optional<Staff> tmpStaff = staffDao.findById(staffId);
+       /* Optional<Staff> tmpStaff = staffDao.findById(staffId);
 
         if (tmpStaff.isPresent()){
             tmpStaff.get().setFirstName(staffDTO.getFirstName());
@@ -117,7 +115,6 @@ public class StaffServiceImpl implements StaffService {
         }
 
         staffDao.save(tmpStaff);
-
     }
 
     @Override
@@ -132,7 +129,7 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public List<StaffDTO> getAllStaff() {
-        List<Staff> allStaff = staffDao.findAll();
-        return mapping.asStaffDTOlist(allStaff);
+        //List<Staff> allStaff = staffDao.findAll();
+        return mapping.asStaffDTOlist(staffDao.findAll());
     }
 }

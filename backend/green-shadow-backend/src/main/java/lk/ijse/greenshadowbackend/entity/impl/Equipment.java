@@ -26,5 +26,4 @@ public class Equipment {
     @JoinColumn(name = "staff_id")
     private Staff staff;
 
-
 }

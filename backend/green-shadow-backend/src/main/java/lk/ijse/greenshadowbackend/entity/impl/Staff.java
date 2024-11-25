@@ -1,5 +1,6 @@
 package lk.ijse.greenshadowbackend.entity.impl;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lk.ijse.greenshadowbackend.entity.Gender;
 import lk.ijse.greenshadowbackend.entity.Role;
@@ -37,6 +38,7 @@ public class Staff {
             joinColumns = @JoinColumn(name = "staff_id"),
             inverseJoinColumns = @JoinColumn(name = "field_id")
     )
+    @JsonManagedReference
     private List<Field> fields;
 
     @OneToMany(mappedBy = "staff")
