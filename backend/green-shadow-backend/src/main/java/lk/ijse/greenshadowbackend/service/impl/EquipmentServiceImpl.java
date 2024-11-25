@@ -7,6 +7,7 @@ import lk.ijse.greenshadowbackend.dto.impl.EquipmentDTO;
 import lk.ijse.greenshadowbackend.entity.impl.Equipment;
 import lk.ijse.greenshadowbackend.entity.impl.Field;
 import lk.ijse.greenshadowbackend.entity.impl.Staff;
+import lk.ijse.greenshadowbackend.entity.impl.Vehicle;
 import lk.ijse.greenshadowbackend.service.EquipmentService;
 import lk.ijse.greenshadowbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,7 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public List<EquipmentDTO> getAllEquipments() {
-        return null;
+        List<Equipment> allEquipments = equipmentDao.findAll();
+        return mapping.asEquipmentDTOlist(allEquipments);
     }
 }
