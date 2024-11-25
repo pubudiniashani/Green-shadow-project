@@ -1,7 +1,7 @@
 package lk.ijse.greenshadowbackend.controller;
 
 import lk.ijse.greenshadowbackend.dto.impl.EquipmentDTO;
-import lk.ijse.greenshadowbackend.dto.impl.VehicleDTO;
+import lk.ijse.greenshadowbackend.exception.UserNotFoundException;
 import lk.ijse.greenshadowbackend.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,4 +33,16 @@ public class EquipmentController {
     public List<EquipmentDTO> getAllEquipments(){
         return equipmentService.getAllEquipments();
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping(value = "/{equipmentId}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateEquipment(@PathVariable String equipmentId , @RequestBody EquipmentDTO equipmentDTO ){
+        try {
+            equipmentService.updateEquipment(equipmentId,equipmentDTO);
+        }catch (UserNotFoundException e){
+            e.printStackTrace();
+        }
+    }
+
+
 }

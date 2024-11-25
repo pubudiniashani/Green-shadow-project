@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -64,6 +65,23 @@ public class EquipmentServiceImpl implements EquipmentService {
 
     @Override
     public void updateEquipment(String equipmentId, EquipmentDTO equipmentDTO) {
+        Equipment tmpEquipment = equipmentDao.findById(equipmentId).get();
+        /*Optional<Field> field = fieldDao.findById(equipmentDTO.getField());
+        Optional<Staff> staff = staffDao.findById(equipmentDTO.getStaff());
+*/
+
+        Field field = fieldDao.findById(equipmentDTO.getField())
+                .orElseThrow(() -> new RuntimeException("Field not found for ID: " + equipmentDTO.getField()));
+
+        Staff staff = staffDao.findById(equipmentDTO.getStaff())
+                .orElseThrow(() -> new RuntimeException("Staff not found for ID: " + equipmentDTO.getStaff()));
+
+        tmpEquipment.setName(equipmentDTO.getName());
+        tmpEquipment.setType(equipmentDTO.getType());
+        tmpEquipment.setStatus(equipmentDTO.getStatus());
+
+        tmpEquipment.setField(field);
+        tmpEquipment.setStaff(staff);
 
     }
 
