@@ -21,30 +21,18 @@ public class Log {
     @Column(columnDefinition = "LONGTEXT")
     private String observedImage;
 
-    @ManyToMany
-    @JoinTable(
-            name = "staff_logs_details",
-            joinColumns = @JoinColumn(name = "log_id"),
-            inverseJoinColumns = @JoinColumn(name = "staff_id")
-    )
-    private List<Staff> staffLogs;
+    @ManyToOne
+    @JoinColumn(name = "staffId")
+    private Staff staffLogs;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "field_logs",
-            joinColumns = @JoinColumn(name = "log_id"),
-            inverseJoinColumns = @JoinColumn(name = "field_id")
-    )
-    private List<Field> fieldLogs;
+    @ManyToOne
+    @JoinColumn(name = "fieldId")
+    private Field fieldLogs;
 
-    @ManyToMany
-    @JoinTable(
-            name = "crop_logs",
-            joinColumns = @JoinColumn(name = "log_id"),
-            inverseJoinColumns = @JoinColumn(name = "crop_id")
-    )
-    private List<Crop> cropLogs;
+    @ManyToOne
+    @JoinColumn(name = "cropId")
+    private Crop cropLogs;
 
 
 }

@@ -41,10 +41,10 @@ public class Staff {
     @JsonManagedReference
     private List<Field> fields;
 
-    @OneToMany(mappedBy = "staff")
+    @OneToMany(mappedBy = "staff",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Vehicle> vehicles;
 
-    @ManyToMany(mappedBy = "staffLogs",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "staffLogs",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Log> logs;
 
     @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
