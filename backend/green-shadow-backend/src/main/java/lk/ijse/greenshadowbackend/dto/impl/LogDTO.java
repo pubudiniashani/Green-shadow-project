@@ -19,7 +19,7 @@ public class LogDTO implements LogStatus {
     private Date date;
     private String logDetails;
     private String observedImage;
-    private List<Staff> staffLogs;
-    private List<Field> fieldLogs;
-    private List<Crop> cropLogs;
+    private String staffLogs;
+    private String fieldLogs;
+    private String cropLogs;
 }

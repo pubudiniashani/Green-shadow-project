@@ -25,7 +25,6 @@ public class Log {
     @JoinColumn(name = "staffId")
     private Staff staffLogs;
 
-
     @ManyToOne
     @JoinColumn(name = "fieldId")
     private Field fieldLogs;

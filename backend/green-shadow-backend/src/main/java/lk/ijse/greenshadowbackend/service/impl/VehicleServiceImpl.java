@@ -41,7 +41,7 @@ public class VehicleServiceImpl implements VehicleService {
             vehicle.setVehicleId(UUID.randomUUID().toString());
             vehicleDao.save(vehicle);
         }catch (Exception e){
-            throw new RuntimeException("Error saving crop",e);
+            throw new RuntimeException("Error saving vehicle",e);
         }
     }
 
