@@ -3,6 +3,7 @@ package lk.ijse.greenshadowbackend.controller;
 import lk.ijse.greenshadowbackend.dto.impl.CropDTO;
 import lk.ijse.greenshadowbackend.dto.impl.LogDTO;
 import lk.ijse.greenshadowbackend.dto.impl.VehicleDTO;
+import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.LogService;
 import lk.ijse.greenshadowbackend.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,21 @@ public class LogController {
             throw new RuntimeException("Failed to process images", e);
         }
 
+    }
+
+    @DeleteMapping(value = "/{logId}")
+    public ResponseEntity<Void> deleteLog(@PathVariable("logId") String logId) {
+
+        try {
+            logService.deleteLogs(logId);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (FieldNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
 }

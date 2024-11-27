@@ -6,6 +6,7 @@ import lk.ijse.greenshadowbackend.dao.LogDao;
 import lk.ijse.greenshadowbackend.dao.StaffDao;
 import lk.ijse.greenshadowbackend.dto.impl.LogDTO;
 import lk.ijse.greenshadowbackend.entity.impl.*;
+import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.LogService;
 import lk.ijse.greenshadowbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +82,12 @@ public class LogServiceImpl implements LogService {
 
     @Override
     public void deleteLogs(String logId) {
-
+        Optional<Log>  existedLog =  logDao.findById(logId);
+        if (!existedLog.isPresent()){
+            throw new FieldNotFoundException("Crop with this ID is not found");
+        }else {
+            logDao.deleteById(logId);
+        }
     }
 
     @Override
