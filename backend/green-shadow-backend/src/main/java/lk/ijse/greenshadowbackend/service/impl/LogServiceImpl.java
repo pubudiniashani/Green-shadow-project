@@ -59,7 +59,24 @@ public class LogServiceImpl implements LogService {
 
     @Override
     public void updateLogs(String logId, LogDTO logDTO) {
+        Log tmpLog = logDao.findById(logId).get();
+        Optional<Staff> staff = staffDao.findById(logDTO.getStaffLogs());
+        Optional<Field> field = fieldDao.findById(logDTO.getFieldLogs());
+        Optional<Crop> crop = cropDao.findById(logDTO.getCropLogs());
 
+        tmpLog.setDate(logDTO.getDate());
+        tmpLog.setLogDetails(logDTO.getLogDetails());
+        tmpLog.setObservedImage(logDTO.getObservedImage());
+
+        if (!staff.isEmpty()){
+            tmpLog.setStaffLogs(staff.get());
+        }
+        if (!field.isEmpty()){
+            tmpLog.setFieldLogs(field.get());
+        }
+        if (!crop.isEmpty()){
+            tmpLog.setCropLogs(crop.get());
+        }
     }
 
     @Override

@@ -58,4 +58,40 @@ public class LogController {
 
     }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping(value = "/{logId}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void updateLog(
+            @RequestParam("date") Date date,
+            @RequestParam("logDetails") String logDetails,
+            @RequestParam(value = "observedImage",required = false) MultipartFile observedImage,
+            @RequestParam("staffLogs") String staffLogs,
+            @RequestParam("fieldLogs") String fieldLogs,
+            @RequestParam("cropLogs") String cropLogs,
+
+            @PathVariable("logId") String logId
+    ) {
+        try {
+
+            var buildDTO = new LogDTO();
+            buildDTO.setDate(date);
+            buildDTO.setLogDetails(logDetails);
+            buildDTO.setStaffLogs(staffLogs);
+            buildDTO.setFieldLogs(fieldLogs);
+            buildDTO.setCropLogs(cropLogs);
+
+
+            if (!observedImage.isEmpty()) {
+
+                String base64Image1 = AppUtil.imageToBase64(observedImage.getBytes());
+                buildDTO.setObservedImage(base64Image1);
+            }
+            logService.updateLogs(logId,buildDTO);
+        }catch (Exception e){
+
+            e.printStackTrace();
+            throw new RuntimeException("Failed to process images", e);
+        }
+
+    }
+
 }
