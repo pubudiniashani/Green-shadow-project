@@ -61,4 +61,13 @@ public class FieldServiceImpl implements FieldService {
         List<Field> allFields = fieldDao.findAll();
         return mapping.asFieldDTOlist(allFields);
     }
+
+    @Override
+    public FieldDTO findById(String fieldId) {
+        Optional<Field> field = fieldDao.findById(fieldId);
+        if (field.isPresent()){
+            return mapping.toFieldDTO(field.get());
+        }
+        return null;
+    }
 }

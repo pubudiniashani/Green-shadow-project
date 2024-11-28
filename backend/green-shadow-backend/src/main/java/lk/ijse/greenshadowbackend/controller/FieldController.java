@@ -1,4 +1,5 @@
 package lk.ijse.greenshadowbackend.controller;
+import lk.ijse.greenshadowbackend.dto.impl.CropDTO;
 import lk.ijse.greenshadowbackend.dto.impl.FieldDTO;
 import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.FieldService;
@@ -111,6 +112,16 @@ public class FieldController {
     public List<FieldDTO> getAllFields(){
         return fieldService.getAllFields();
     }
+
+    @GetMapping(value = "/{fieldId}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<FieldDTO> getCropById(@PathVariable ("fieldId") String fieldId){
+        FieldDTO fieldDTO = fieldService.findById(fieldId);
+        if (fieldDTO == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(fieldDTO,HttpStatus.OK);
+    }
+
 }
 
 
