@@ -7,6 +7,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -88,8 +89,35 @@ public class Mapping {
         return modelMapper.map(log , LogDTO.class);
     }
 
-    public List<LogDTO> asLogDTOlist(List<Log> logEntities ){
+   /* public List<LogDTO> asLogDTOlist(List<Log> logEntities ){
         return modelMapper.map(logEntities , new TypeToken<List<LogDTO>>() {}.getType());
+    }*/
+
+    public List<LogDTO> asLogDTOlist(List<Log> logEntities) {
+        List<LogDTO> logDTOs = new ArrayList<>();
+        for (Log log : logEntities) {
+            LogDTO dto = new LogDTO();
+            dto.setLogId(log.getLogId());
+            dto.setDate(log.getDate());
+            dto.setLogDetails(log.getLogDetails());
+            dto.setObservedImage(log.getObservedImage());
+            
+
+            if (log.getStaffLogs() != null) {
+                dto.setStaffLogs(log.getStaffLogs().getStaffId());
+            }
+
+            // Set fieldId
+            if (log.getFieldLogs() != null) {
+                dto.setFieldLogs(log.getFieldLogs().getFieldId());
+            }
+            if (log.getCropLogs() != null) {
+                dto.setCropLogs(log.getCropLogs().getCropId());
+            }
+
+            logDTOs.add(dto);
+        }
+        return logDTOs;
     }
 
     //Vehicle

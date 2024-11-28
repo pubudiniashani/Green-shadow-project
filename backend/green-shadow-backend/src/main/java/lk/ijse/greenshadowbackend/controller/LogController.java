@@ -2,7 +2,6 @@ package lk.ijse.greenshadowbackend.controller;
 
 import lk.ijse.greenshadowbackend.dto.impl.CropDTO;
 import lk.ijse.greenshadowbackend.dto.impl.LogDTO;
-import lk.ijse.greenshadowbackend.dto.impl.VehicleDTO;
 import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.LogService;
 import lk.ijse.greenshadowbackend.util.AppUtil;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/logs")
@@ -110,4 +110,9 @@ public class LogController {
         }
     }
 
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<LogDTO> getAllLogs(){
+        return logService.getAllLogs();
+    }
 }
+
