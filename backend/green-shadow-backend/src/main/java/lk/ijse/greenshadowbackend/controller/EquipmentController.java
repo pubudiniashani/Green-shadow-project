@@ -1,6 +1,7 @@
 package lk.ijse.greenshadowbackend.controller;
 
 import lk.ijse.greenshadowbackend.dto.impl.EquipmentDTO;
+import lk.ijse.greenshadowbackend.dto.impl.VehicleDTO;
 import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.exception.UserNotFoundException;
 import lk.ijse.greenshadowbackend.service.EquipmentService;
@@ -58,6 +59,11 @@ public class EquipmentController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    @GetMapping("/{equipmentId}")
+    public ResponseEntity<EquipmentDTO> getEquipmentById(@PathVariable String equipmentId) {
+        EquipmentDTO equipmentDTO = equipmentService.findById(equipmentId);
+        return new ResponseEntity<>(equipmentDTO, HttpStatus.OK);
     }
 
 }
