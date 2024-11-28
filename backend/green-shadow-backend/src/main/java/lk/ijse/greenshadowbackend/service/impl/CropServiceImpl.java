@@ -76,4 +76,13 @@ public class CropServiceImpl implements CropService {
         List<Crop> allCrops = cropDao.findAll();
         return mapping.asCropDTOlist(allCrops);
     }
+
+    @Override
+    public CropDTO findById(String cropId) {
+       Optional<Crop> crop = cropDao.findById(cropId);
+       if (crop.isPresent()){
+           return mapping.toCropDTO(crop.get());
+       }
+       return null;
+    }
 }

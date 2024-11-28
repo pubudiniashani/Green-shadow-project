@@ -1,6 +1,7 @@
 package lk.ijse.greenshadowbackend.controller;
 
 import lk.ijse.greenshadowbackend.dto.impl.CropDTO;
+import lk.ijse.greenshadowbackend.entity.impl.Crop;
 import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.CropService;
 import lk.ijse.greenshadowbackend.util.AppUtil;
@@ -111,4 +112,14 @@ public class CropController {
     public List<CropDTO> getAllCrops(){
         return cropService.getAllCrops();
     }
+
+    @GetMapping(value = "/{cropId}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CropDTO> getCropById(@PathVariable ("cropId") String cropId){
+        CropDTO crop = cropService.findById(cropId);
+        if (crop == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(crop,HttpStatus.OK);
+    }
+
 }

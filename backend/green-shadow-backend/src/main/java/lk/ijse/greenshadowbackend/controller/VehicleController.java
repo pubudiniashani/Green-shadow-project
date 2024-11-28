@@ -67,7 +67,7 @@ public class VehicleController {
         return new ResponseEntity<>(vehicle, HttpStatus.OK);
     }
 
-    
+
 
 }
 
