@@ -10,4 +10,6 @@ public interface VehicleService {
     void updateVehicle(String vehicleId, VehicleDTO vehicleDTO);
     void deleteVehicle(String vehicleId);
     List<VehicleDTO> getAllVehicles();
+    VehicleDTO findById(String vehicleId);
+
 }

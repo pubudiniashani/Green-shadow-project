@@ -1,6 +1,5 @@
 package lk.ijse.greenshadowbackend.controller;
 
-import lk.ijse.greenshadowbackend.dto.impl.CropDTO;
 import lk.ijse.greenshadowbackend.dto.impl.LogDTO;
 import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.LogService;

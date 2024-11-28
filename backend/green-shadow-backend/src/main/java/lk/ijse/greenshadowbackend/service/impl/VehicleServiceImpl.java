@@ -76,4 +76,13 @@ public class VehicleServiceImpl implements VehicleService {
         List<Vehicle> allVehicles = vehicleDao.findAll();
         return mapping.asVehicleDTOlist(allVehicles);
     }
+
+    @Override
+    public VehicleDTO findById(String vehicleId) {
+        Vehicle vehicle = vehicleDao.findById(vehicleId)
+                .orElseThrow(() -> new IllegalArgumentException("Vehicle not found with ID: " ));
+        return mapping.toVehicleDTO(vehicle);
+    }
+
+
 }

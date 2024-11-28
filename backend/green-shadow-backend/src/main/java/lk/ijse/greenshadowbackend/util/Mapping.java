@@ -101,13 +101,12 @@ public class Mapping {
             dto.setDate(log.getDate());
             dto.setLogDetails(log.getLogDetails());
             dto.setObservedImage(log.getObservedImage());
-            
+
 
             if (log.getStaffLogs() != null) {
                 dto.setStaffLogs(log.getStaffLogs().getStaffId());
             }
 
-            // Set fieldId
             if (log.getFieldLogs() != null) {
                 dto.setFieldLogs(log.getFieldLogs().getFieldId());
             }

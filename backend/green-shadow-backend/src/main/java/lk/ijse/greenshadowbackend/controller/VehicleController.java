@@ -61,6 +61,14 @@ public class VehicleController {
         return vehicleService.getAllVehicles();
     }
 
+    @GetMapping("/{vehicleId}")
+    public ResponseEntity<VehicleDTO> getVehicleById(@PathVariable String vehicleId) {
+        VehicleDTO vehicle = vehicleService.findById(vehicleId);
+        return new ResponseEntity<>(vehicle, HttpStatus.OK);
+    }
+
+    
+
 }
 
 
