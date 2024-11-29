@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
 
             User user = mapping.toUserEntity(userDTO);
             user.setUserId(UUID.randomUUID().toString());
-            
+
             Optional<Staff> existingStaff = staffDao.findByEmail(user.getEmail());
 
             Staff staff;
