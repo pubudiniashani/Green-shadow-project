@@ -20,5 +20,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToOne
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
+
 
 }

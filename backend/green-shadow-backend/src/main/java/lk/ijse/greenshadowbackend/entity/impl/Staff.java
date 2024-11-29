@@ -50,6 +50,9 @@ public class Staff {
     @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Equipment> equipment;
 
+    @OneToOne(mappedBy = "staff",cascade = CascadeType.ALL,orphanRemoval = true)
+    private User user;
+
     public String getStaffId() {
         return staffId;
     }
@@ -168,5 +171,14 @@ public class Staff {
 
     public void setEquipment(List<Equipment> equipment) {
         this.equipment = equipment;
+    }
+
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
