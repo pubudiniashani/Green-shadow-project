@@ -14,10 +14,11 @@ import lombok.NoArgsConstructor;
 public class User {
     @Id
     private String userId;
-    private String userName;
+    private String email;
     private String password;
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
 
 }

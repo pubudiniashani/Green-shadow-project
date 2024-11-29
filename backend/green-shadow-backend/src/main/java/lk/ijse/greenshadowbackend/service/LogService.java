@@ -11,4 +11,5 @@ public interface LogService {
     void updateLogs(String logId, LogDTO logDTO);
     void deleteLogs(String logId);
     List<LogDTO> getAllLogs();
+    LogDTO findById(String logId);
 }

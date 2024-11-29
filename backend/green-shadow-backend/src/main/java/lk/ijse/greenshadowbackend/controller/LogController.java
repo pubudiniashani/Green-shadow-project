@@ -113,5 +113,15 @@ public class LogController {
     public List<LogDTO> getAllLogs(){
         return logService.getAllLogs();
     }
+
+    @GetMapping(value = "/{logId}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<LogDTO> getCropById(@PathVariable ("logId") String logId){
+        LogDTO logDTO = logService.findById(logId);
+        if (logDTO == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(logDTO,HttpStatus.OK);
+    }
+
 }
 

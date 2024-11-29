@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface StaffDao extends JpaRepository<Staff,String> {
-    Optional<Staff> findByEmail(String email);
+    Staff findByEmail(String email);
 }
 

@@ -95,5 +95,14 @@ public class LogServiceImpl implements LogService {
         List<Log> allLogs = logDao.findAll();
         return mapping.asLogDTOlist(allLogs);
     }
+
+    @Override
+    public LogDTO findById(String logId) {
+        Optional<Log> log = logDao.findById(logId);
+        if (log.isPresent()){
+            return mapping.toLogDTO(log.get());
+        }
+        return null;
+    }
 }
 

@@ -50,7 +50,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> tmpUser = userDao.findById(userId);
 
         if (tmpUser.isPresent()){
-            tmpUser.get().setUserName(userDTO.getUserName());
+            tmpUser.get().setEmail(userDTO.getEmail());
             tmpUser.get().setPassword(userDTO.getPassword());
             tmpUser.get().setRole(userDTO.getRole());
 
