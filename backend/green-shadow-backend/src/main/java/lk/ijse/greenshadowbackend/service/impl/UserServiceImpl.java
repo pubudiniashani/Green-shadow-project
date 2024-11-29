@@ -1,7 +1,9 @@
 package lk.ijse.greenshadowbackend.service.impl;
 
+import lk.ijse.greenshadowbackend.dao.StaffDao;
 import lk.ijse.greenshadowbackend.dao.UserDao;
 import lk.ijse.greenshadowbackend.dto.impl.UserDTO;
+import lk.ijse.greenshadowbackend.entity.impl.Staff;
 import lk.ijse.greenshadowbackend.entity.impl.User;
 import lk.ijse.greenshadowbackend.exception.UserNotFoundException;
 import lk.ijse.greenshadowbackend.service.UserService;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -21,18 +24,49 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Autowired
+    private StaffDao staffDao;
+
+    @Autowired
     private Mapping mapping;
 
     @Override
     public void saveUser(UserDTO userDTO) {
-        try {
+        /*try {
 
             User user = mapping.toUserEntity(userDTO);
             user.setUserId(UUID.randomUUID().toString());
             userDao.save(user);
         } catch (Exception e) {
             throw new RuntimeException("Error saving user", e);
+        }*/
+
+        try {
+
+            User user = mapping.toUserEntity(userDTO);
+            user.setUserId(UUID.randomUUID().toString());
+            
+            Optional<Staff> existingStaff = staffDao.findByEmail(user.getEmail());
+
+            Staff staff;
+            if (existingStaff.isPresent()) {
+
+                staff = existingStaff.get();
+            } else {
+
+                staff = new Staff();
+                staff.setStaffId(UUID.randomUUID().toString());
+                staff.setEmail(user.getEmail());
+                staff.setRole(user.getRole());
+                staffDao.save(staff);
+            }
+
+            user.setStaff(staff);
+
+            userDao.save(user);
+        } catch (Exception e) {
+            throw new RuntimeException("Error saving user", e);
         }
+
     }
 
     @Override
@@ -55,5 +89,11 @@ public class UserServiceImpl implements UserService {
             tmpUser.get().setRole(userDTO.getRole());
 
         }
+    }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+        List<User> allUsers = userDao.findAll();
+        return mapping.asUserDTOlist(allUsers);
     }
 }

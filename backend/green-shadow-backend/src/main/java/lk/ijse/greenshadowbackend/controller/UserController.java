@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 @RestController
@@ -62,4 +63,10 @@ public class UserController {
                e.printStackTrace();
            }
     }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<UserDTO> getAllUserss(){
+        return userService.getAllUsers();
+    }
+
 }
