@@ -8,6 +8,9 @@ import lk.ijse.greenshadowbackend.service.AuthService;
 import lk.ijse.greenshadowbackend.service.JWTService;
 import lk.ijse.greenshadowbackend.util.Mapping;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,9 +23,16 @@ public class AuthServiceImpl implements AuthService {
 
     private final JWTService jwtService;
 
+    private final AuthenticationManager authenticationManager;
+
     @Override
     public JWTAuthResponse signIn(Signin signin) {
-        return null;
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signin.getEmail(),signin.getPassword()));
+        var user = userDao.findByEmail(signin.getEmail())
+                .orElseThrow(() -> new UsernameNotFoundException("user not found"));
+
+        var generatedToken = jwtService.generateToken(user);
+        return JWTAuthResponse.builder().token(generatedToken).build();
     }
 
     @Override

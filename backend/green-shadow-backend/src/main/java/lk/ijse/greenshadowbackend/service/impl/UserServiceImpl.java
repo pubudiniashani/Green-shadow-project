@@ -100,6 +100,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDetailsService userDetailsService() {
-        return null;
+        return userName ->
+                userDao.findByEmail(userName)
+                        .orElseThrow(()-> new UserNotFoundException("user not found"));
     }
+
 }
