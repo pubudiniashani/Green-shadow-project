@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class JWTAuthResponse {
-    private String token;
+public class Signin {
+    private String email;
+    private String password;
 }

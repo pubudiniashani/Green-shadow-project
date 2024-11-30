@@ -9,6 +9,7 @@ import lk.ijse.greenshadowbackend.exception.UserNotFoundException;
 import lk.ijse.greenshadowbackend.service.UserService;
 import lk.ijse.greenshadowbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -95,5 +96,10 @@ public class UserServiceImpl implements UserService {
     public List<UserDTO> getAllUsers() {
         List<User> allUsers = userDao.findAll();
         return mapping.asUserDTOlist(allUsers);
+    }
+
+    @Override
+    public UserDetailsService userDetailsService() {
+        return null;
     }
 }
