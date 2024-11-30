@@ -30,7 +30,6 @@ public class UserController {
         }
     }
 
-
     @DeleteMapping(value = "/{userId}")
     public ResponseEntity<Void> deleteUser(@PathVariable("userId") String userId) {
 

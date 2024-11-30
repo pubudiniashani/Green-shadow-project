@@ -2,6 +2,7 @@ package lk.ijse.greenshadowbackend.service.impl;
 
 import lk.ijse.greenshadowbackend.dao.UserDao;
 import lk.ijse.greenshadowbackend.dto.impl.UserDTO;
+import lk.ijse.greenshadowbackend.entity.impl.User;
 import lk.ijse.greenshadowbackend.secure.JWTAuthResponse;
 import lk.ijse.greenshadowbackend.secure.Signin;
 import lk.ijse.greenshadowbackend.service.AuthService;
@@ -37,11 +38,22 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public JWTAuthResponse signUp(UserDTO userDTO) {
-        return null;
-    }
+        User saveUser = userDao.save(mapping.toUserEntity(userDTO));
 
+        var generatedToken =  jwtService.generateToken(saveUser);
+        return  JWTAuthResponse.builder().token(generatedToken).build();
+
+    }
     @Override
     public JWTAuthResponse refreshToken(String accessToken) {
-        return null;
+        var userName = jwtService.extractUserName(accessToken);
+
+        var findUser = userDao.findByEmail(userName)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        var refreshToken = jwtService.refreshToken(findUser);
+        return JWTAuthResponse.builder().token(refreshToken).build();
     }
 }
+
+
+

@@ -132,4 +132,16 @@ public class StaffServiceImpl implements StaffService {
         //List<Staff> allStaff = staffDao.findAll();
         return mapping.asStaffDTOlist(staffDao.findAll());
     }
+
+    @Override
+    public Optional<StaffDTO> findByEmail(String email) {
+        Optional<Staff> byEmail = staffDao.findByEmail(email);
+
+        if (byEmail.isPresent()) {
+            StaffDTO staffDto = mapping.toStaffDTO(byEmail.get());
+            return Optional.of(staffDto);
+        }
+
+        return Optional.empty();
+    }
 }
