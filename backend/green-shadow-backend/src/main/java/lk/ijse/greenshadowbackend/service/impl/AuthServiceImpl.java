@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
@@ -46,6 +48,7 @@ public class AuthServiceImpl implements AuthService {
         var generatedToken =  jwtService.generateToken(saveUser);
         return  JWTAuthResponse.builder().token(generatedToken).build();*/
 
+        userDTO.setUserId(UUID.randomUUID().toString());
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         //save user
         User user = mapping.toUserEntity(userDTO);

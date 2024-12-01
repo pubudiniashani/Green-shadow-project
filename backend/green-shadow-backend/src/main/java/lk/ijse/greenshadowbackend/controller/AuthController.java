@@ -71,7 +71,6 @@ public class AuthController {
                 newStaff.setEmail(userDTO.getEmail());
                 newStaff.setRole(userDTO.getRole());
 
-
                 String staffId = staffService.saveStaff(newStaff).getStaffId();
                 userDTO.setStaff(staffId);
 
