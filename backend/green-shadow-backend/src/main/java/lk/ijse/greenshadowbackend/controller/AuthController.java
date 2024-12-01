@@ -33,7 +33,7 @@ public class AuthController {
 
     @PostMapping(value = "signup",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<JWTAuthResponse> saveUser(@RequestBody UserDTO userDTO){
-        System.out.println(userDTO);
+       /* System.out.println(userDTO);
         try {
             Optional<StaffDTO> existStaff = staffService.findByEmail(userDTO.getEmail());
 
@@ -47,8 +47,44 @@ public class AuthController {
 
             }else {
                 userDTO.setStaff(existStaff.get().getStaffId());
+                userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
             }
 
+            userDTO.setUserId(UUID.randomUUID().toString());
+            return ResponseEntity.ok(authService.signUp(userDTO));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }*/
+
+        System.out.println(userDTO);
+        try {
+
+            userDTO.setUserId(UUID.randomUUID().toString());
+
+            // Check if a staff member exists with the given email
+            Optional<StaffDTO> existingStaff = staffService.findByEmail(userDTO.getEmail());
+
+            if (!existingStaff.isPresent()) {
+                // Save new staff member if none exists
+                StaffDTO newStaff = new StaffDTO();
+                newStaff.setEmail(userDTO.getEmail());
+                newStaff.setRole(userDTO.getRole());
+
+
+                String staffId = staffService.saveStaff(newStaff).getStaffId();
+                userDTO.setStaff(staffId);
+
+                // Set the saved staff ID to the user DTO
+                userDTO.setStaff(newStaff.getStaffId());
+
+            } else {
+                // Link to the existing staff member
+                userDTO.setStaff(existingStaff.get().getStaffId());
+            }
+
+
+            // Save the user
             return ResponseEntity.ok(authService.signUp(userDTO));
         } catch (Exception e) {
             e.printStackTrace();

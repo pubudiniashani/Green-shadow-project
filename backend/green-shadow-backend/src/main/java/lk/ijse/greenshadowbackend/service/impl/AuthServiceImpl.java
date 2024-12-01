@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -26,6 +27,8 @@ public class AuthServiceImpl implements AuthService {
 
     private final AuthenticationManager authenticationManager;
 
+    private final PasswordEncoder passwordEncoder;
+
     @Override
     public JWTAuthResponse signIn(Signin signin) {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signin.getEmail(),signin.getPassword()));
@@ -38,10 +41,20 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public JWTAuthResponse signUp(UserDTO userDTO) {
-        User saveUser = userDao.save(mapping.toUserEntity(userDTO));
+        /*User saveUser = userDao.save(mapping.toUserEntity(userDTO));
 
         var generatedToken =  jwtService.generateToken(saveUser);
-        return  JWTAuthResponse.builder().token(generatedToken).build();
+        return  JWTAuthResponse.builder().token(generatedToken).build();*/
+
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        //save user
+        User user = mapping.toUserEntity(userDTO);
+        System.out.println(user);
+        User savedUser = userDao.save(user);
+        // System.out.println(savedUser);
+        //generate token
+        var token = jwtService.generateToken(savedUser);
+        return JWTAuthResponse.builder().token(token).build();
 
     }
     @Override

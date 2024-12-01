@@ -29,7 +29,7 @@ public class StaffServiceImpl implements StaffService {
     private Mapping mapping;
 
     @Override
-    public void saveStaff(StaffDTO staffDTO) {
+    public StaffDTO saveStaff(StaffDTO staffDTO) {
        /* try {
 
             Staff staff = mapping.toStaffEntity(staffDTO);
@@ -55,7 +55,8 @@ public class StaffServiceImpl implements StaffService {
                 //System.out.println("staffEntity - " + staffEntity);
             }
 
-            staffDao.save(staffEntity);
+           Staff savedStaff = staffDao.save(staffEntity);
+            return mapping.toStaffDTO(savedStaff);
 
         }
         catch (Exception e) {
