@@ -104,6 +104,23 @@ h1 span:last-child {
     object-fit: cover;
 }
 
+.card-container {
+    display: flex;
+    gap: 15px;
+}
+
+.card {
+    flex: 1;
+    max-width: 300px;
+}
 
 
+.card-img {
+    filter: blur(3px); /* Adjust the blur value to your preference */
+    transition: filter 0.3s ease; /* Smooth transition for hover effect */
+}
 
+/* Optional: Remove blur on hover */
+.card:hover .card-img {
+    filter: none; /* Removes blur when the card is hovered */
+}
