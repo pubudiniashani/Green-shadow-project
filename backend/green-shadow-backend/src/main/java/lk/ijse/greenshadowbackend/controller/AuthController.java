@@ -82,7 +82,6 @@ public class AuthController {
             }
 
 
-
             return ResponseEntity.ok(authService.signUp(userDTO));
         } catch (Exception e) {
             e.printStackTrace();
