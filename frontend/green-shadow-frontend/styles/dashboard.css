@@ -60,13 +60,13 @@ body {
     padding-right: 20px;
 }
 
-.card {
-    max-width: 250px; /* Limits the card width */
-    margin: 0 auto; /* Centers the card in its column */
-    border: 1px solid #ddd; /* Adds a subtle border */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds a soft shadow */
-}
+/*.card {
+    max-width: 250px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+}*/
 
 #d1 {
     display: flex;
@@ -78,17 +78,17 @@ body {
 }
 
 h1 {
-    margin: 0; /* Remove default margin for proper centering */
+    margin: 0;
 }
 
 h1 span:first-child {
-    font-size: 2rem; /* Style the first span */
+    font-size: 2rem;
     font-style: italic;
 }
 
 h1 span:last-child {
-    font-size: 2rem; /* Style the second span */
-    margin-top: 10px; /* Add spacing below the first span */
+    font-size: 2rem;
+    margin-top: 10px;
 }
 
 #carouselExampleIndicators {
@@ -112,15 +112,19 @@ h1 span:last-child {
 .card {
     flex: 1;
     max-width: 300px;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
 }
 
 
 .card-img {
-    filter: blur(3px); /* Adjust the blur value to your preference */
-    transition: filter 0.3s ease; /* Smooth transition for hover effect */
+    filter: blur(2px);
+    transition: filter 0.3s ease;
 }
 
-/* Optional: Remove blur on hover */
 .card:hover .card-img {
-    filter: none; /* Removes blur when the card is hovered */
+    filter: none;
 }
+
+
