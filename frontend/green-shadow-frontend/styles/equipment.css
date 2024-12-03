@@ -1,0 +1,51 @@
+#dashboard-header {
+    width: 100vw;
+    height: 12vh;
+    background-color: #57cc99;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    font-style: italic;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+}
+
+.sidebar {
+    height: 100vh;
+    width: 250px;
+    background-color: #c7f9cc;
+    padding-top: 20px;
+    position: fixed;
+}
+
+.sidebar h3 {
+    color: #22333b;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar .nav-item {
+    margin-bottom: 10px;
+}
+
+.sidebar .nav-link {
+    color: black;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 12px 15px;
+    text-align: left;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #1abc9c;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+}
