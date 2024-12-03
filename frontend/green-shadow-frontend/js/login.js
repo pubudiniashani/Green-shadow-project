@@ -5,7 +5,7 @@ $('#login-btn').on('click',()=>{
     console.log(email,password)
 
     $.ajax({
-        url: 'http://localhost:8080/greenshadowbackend/api/v1/auth/signin',
+        url: 'http://localhost:8080/greenshadow/api/v1/auth/signin',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ email, password }),
@@ -13,6 +13,7 @@ $('#login-btn').on('click',()=>{
             // Store the token from the response
             localStorage.setItem('token', response.token);
             localStorage.setItem('email',email)
+            window.location.href = "dashboard.html";
         },
         error: function () {
            alert("Error while login")

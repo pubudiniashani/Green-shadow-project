@@ -45,13 +45,10 @@ body{
 }
 
 .card.signup {
-    background-image: url("../assets/background.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+
     border-radius: 10px;
     padding: 20px;
-    color: #fff;
+    color: black;
 
 }
 
