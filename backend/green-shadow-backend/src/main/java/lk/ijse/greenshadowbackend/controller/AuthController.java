@@ -21,6 +21,7 @@ import java.util.UUID;
 @RequestMapping("api/v1/auth")
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin
 public class AuthController {
 
     private final AuthService authService;
@@ -72,7 +73,6 @@ public class AuthController {
 
                 String staffId = staffService.saveStaff(newStaff).getStaffId();
                 userDTO.setStaff(staffId);
-
 
                 userDTO.setStaff(newStaff.getStaffId());
 
