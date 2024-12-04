@@ -80,8 +80,6 @@ body {
     flex-direction: column;
 }
 
-table {
-    margin: 0 auto; /* Centers the table horizontally */
-    width: auto; /* Optional: Adjusts the table's width to fit its content */
-    text-align: center; /* Optional: Aligns the table text */
+#field-table{
+    margin-top: 40px;
 }

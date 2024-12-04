@@ -1,3 +1,8 @@
+$(document).ready(() => {
+    loadTable()
+});
+
+
 $('#add-btn').on('click',()=> {
     console.log("add button clicked")
 
@@ -10,9 +15,9 @@ $('#add-btn').on('click',()=> {
     console.log(name, location, extentSize)
 
     const formData = new FormData();
-    formData.append("name",name)
-    formData.append("location",location)
-    formData.append("extentSize",extentSize)
+    formData.append("name", name)
+    formData.append("location", location)
+    formData.append("extentSize", extentSize)
 
     if (image1) {
         formData.append("image1", image1);
@@ -35,7 +40,7 @@ $('#add-btn').on('click',()=> {
             Authorization: "Bearer " + token
         },
         success: function (response) {
-            localStorage.setItem('token', response.token);
+            // localStorage.setItem('token', response.token);
             alert("Successfully saved the field")
         },
         error: function () {
@@ -43,5 +48,49 @@ $('#add-btn').on('click',()=> {
         }
     });
 
+
+
 });
 
+
+var recordIndex;
+
+function loadTable() {
+
+
+    $.ajax({
+        url: 'http://localhost:8080/greenshadow/api/v1/field',
+        method: 'GET',
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+        },
+        success: function (data) {
+            console.log(data);
+            $("#field-tbl-body").empty();
+            data.forEach(item => {
+
+                const image1 = item.image1
+                    ? `<img src="data:image/jpeg;base64,${item.image1}" alt="Image 1" style="width: 100px; height: auto;">`
+                    : 'No Image';
+                const image2 = item.image2
+                    ? `<img src="data:image/jpeg;base64,${item.image2}" alt="Image 2" style="width: 100px; height: auto;">`
+                    : 'No Image';
+
+                var record = `
+                    <tr data-id="${item.fieldId}">
+                        <th scope="row" class="field-name-value">${item.name}</th>
+                        <td class="field-location-value">${item.location}</td>
+                         <td class="field-extentSize-value">${item.extentSize}</td>
+                         <td>${image1}</td>
+                        <td>${image2}</td>
+                        
+                    </tr>
+                `;
+                $("#field-tbl-body").append(record);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error('Failed to load fields:', error);
+        }
+    });
+}
