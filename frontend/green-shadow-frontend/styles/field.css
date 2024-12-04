@@ -56,12 +56,12 @@ body {
 }
 
 #content {
-    margin-left: 250px; /* width of the sidebar */
-    margin-top: 12vh; /* height of the header */
+    margin-left: 250px;
+    margin-top: 12vh;
     padding: 20px;
     overflow-y: auto;
     flex-grow: 1;
-    background-color: #f9f9f9; /* Optional, to distinguish content area */
+    background-color: #f9f9f9;
 }
 
 .field-card{

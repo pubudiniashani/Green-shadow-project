@@ -57,7 +57,6 @@ var recordIndex;
 
 function loadTable() {
 
-
     $.ajax({
         url: 'http://localhost:8080/greenshadow/api/v1/field',
         method: 'GET',
@@ -77,7 +76,7 @@ function loadTable() {
                     : 'No Image';
 
                 var record = `
-                    <tr data-id="${item.fieldId}">
+                    <tr>
                         <th scope="row" class="field-name-value">${item.name}</th>
                         <td class="field-location-value">${item.location}</td>
                          <td class="field-extentSize-value">${item.extentSize}</td>
@@ -94,3 +93,7 @@ function loadTable() {
         }
     });
 }
+
+
+
+
