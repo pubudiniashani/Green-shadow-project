@@ -4,6 +4,11 @@ Green Shadow Farm Management
 
 Green Shadow is a mid-scale farm.This project manages the fields,crops,staff,equipments,vehicles and monitor the logs.
 
+
+View API documentation
+
+    
+
 Features 
 
  1) Field management - Add , update , delete and retrieve field data 
@@ -37,3 +42,29 @@ Tech stack
     (3) Postman is used for API testing purposes.
 
  
+More about API 
+
+    Base URL :- http://localhost:8080/greenshadow/api/v1
+
+    Some endpoints :- 
+            Signup :- POST - api/v1/auth
+            Add field :- POST - api/v1/field
+            Get crop :- PUT - api/v1/crop
+            Delete staff :- DELETE - api/v1/staff/{staffId}
+
+
+Special point 
+
+    Role based access limitation :- 
+        There are three roles.MANAGER , ADMINISTRATIVE and SCIENTIST. The MANAGER can access all the crud operations.ADMINISTRATIVE can not edit crops or fields.SCIENTIST can not access vehicles,equipment and staff. 
+
+
+
+
+
+
+
+
+
+
+
