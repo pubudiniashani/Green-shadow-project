@@ -45,6 +45,14 @@ $('#add-staff-btn').on('click',()=> {
     const token = localStorage.getItem('token');
     console.log(token)
 
+    const field_id = [];
+    $("#fieldId").each(function () {
+        const fieldId = $(this).val();
+        if (fieldId) {
+            field_id.push(fieldId);
+        }
+    });
+
     const formData = {
         firstName: firstName,
         lastName: lastName,
@@ -56,7 +64,8 @@ $('#add-staff-btn').on('click',()=> {
         contactNumber: contactNumber,
         email: email,
         role: role,
-        fieldId: fieldId
+        fieldId: field_id
+
     };
 
     $.ajax({
@@ -77,3 +86,4 @@ $('#add-staff-btn').on('click',()=> {
     });
 
 });
+
