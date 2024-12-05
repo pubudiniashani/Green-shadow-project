@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Logs</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/log.css">
@@ -42,6 +42,63 @@
 </div>
 
 
+
+<div id="log-container">
+
+    <div class="container mt-5 log-card">
+        <div class="card shadow-lg">
+
+            <div class="card-body ">
+                <form>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="date" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="date">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="detail" class="form-label">Detail</label>
+                            <input type="text" class="form-control" id="detail" >
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="observedImage" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="observedImage" accept="image/*">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="category" class="form-label">Category</label>
+                            <input type="text" class="form-control" id="category">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="season" class="form-label">Season</label>
+                            <input type="text" class="form-control" id="season">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cropImage" class="form-label">Image</label>
+                            <input type="file" class="form-control" id="cropImage" accept="image/*">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="field" class="form-label">Staff ID</label>
+                            <select class="form-select" id="field">
+                                <option selected disabled>Choose ID</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-add" id="add-btn" type="button">Add</button>
+                    <button class="btn btn-primary btn-update" id="update-btn">Update</button>
+                    <button class="btn btn-primary btn-delete" id="delete-btn">Delete</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
