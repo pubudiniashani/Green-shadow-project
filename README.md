@@ -19,3 +19,21 @@ Features
  6) Logs management - Manage the logs regarding to crops,field and staff.
 
  7) Role based access - Acess permissions for some features is limited based on roles.
+
+ In addition this project is secured using JWT authentication and authorization.
+
+Tech stack
+
+    (1) Frontend :-
+            HTML5 , CSS , JS 
+            AJAX , Bootstrap
+
+    (2) Backend :-
+            Springboot
+            JWT
+            Java
+            MYSQL
+
+    (3) Postman is used for API testing purposes.
+
+ 
