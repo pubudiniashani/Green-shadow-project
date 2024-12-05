@@ -69,8 +69,8 @@
                             <label for="gender" class="form-label">Gender</label>
                             <select class="form-select" id="gender">
                                 <option selected disabled>Choose gender</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+                                <option value="MALE">MALE</option>
+                                <option value="FEMALE">FEMALE</option>
                             </select>
                         </div>
                     </div>
@@ -104,14 +104,19 @@
                         </div>
                         <div class="col-md-6">
                             <label for="role" class="form-label">Role</label>
-                            <input type="text" class="form-control" id="role" placeholder="Enter role">
+                            <select class="form-select" id="role">
+                                <option value="" disabled selected>Select a role</option>
+                                <option value="ADMINISTRATIVE">ADMINISTRATIVE</option>
+                                <option value="MANAGER">MANAGER</option>
+                                <option value="SCIENTIST">SCIENTIST</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="row mb-3">
                         <div class="col-md-6">
-                            <label for="field-ids" class="form-label">Field Id</label>
-                            <select class="form-select" id="field-ids">
+                            <label for="fieldId" class="form-label">Field Id</label>
+                            <select class="form-select" id="fieldId">
                                 <option selected disabled>Choose ID</option>
                             </select>
                         </div>

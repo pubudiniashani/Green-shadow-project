@@ -76,7 +76,7 @@ function loadTable() {
                     : 'No Image';
 
                 var record = `
-                    <tr>
+                      <tr data-field-id="${item.fieldId}">
                         <th scope="row" class="field-name-value">${item.name}</th>
                         <td class="field-location-value">${item.location}</td>
                          <td class="field-extentSize-value">${item.extentSize}</td>
@@ -93,6 +93,11 @@ function loadTable() {
         }
     });
 }
+
+$("#field-tbl-body").on("click", "tr", function () {
+    const fieldId = $(this).data("field-id");
+    console.log("Selected Field ID:", fieldId);
+});
 
 
 
