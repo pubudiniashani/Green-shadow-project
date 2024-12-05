@@ -50,6 +50,7 @@ $('#add-staff-btn').on('click',()=> {
         const fieldId = $(this).val();
         if (fieldId) {
             field_id.push(fieldId);
+            console.log(field_id)
         }
     });
 

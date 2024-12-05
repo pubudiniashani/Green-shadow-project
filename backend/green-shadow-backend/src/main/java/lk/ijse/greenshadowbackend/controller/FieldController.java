@@ -115,7 +115,7 @@ public class FieldController {
     }
 
     @GetMapping(value = "/{fieldId}",produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<FieldDTO> getCropById(@PathVariable ("fieldId") String fieldId){
+    public ResponseEntity<FieldDTO> getFieldById(@PathVariable ("fieldId") String fieldId){
         FieldDTO fieldDTO = fieldService.findById(fieldId);
         if (fieldDTO == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

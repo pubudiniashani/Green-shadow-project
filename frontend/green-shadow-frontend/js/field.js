@@ -94,11 +94,46 @@ function loadTable() {
     });
 }
 
+/*
 $("#field-tbl-body").on("click", "tr", function () {
     const fieldId = $(this).data("field-id");
     console.log("Selected Field ID:", fieldId);
 });
+*/
 
+$("#field-tbl-body").on("click", "tr", function () {
+    const fieldId = $(this).data("field-id");
+    console.log("Selected Field ID:", fieldId);
+
+    if (fieldId) {
+        const token = localStorage.getItem('token');
+
+        $.ajax({
+            url: `http://localhost:8080/greenshadow/api/v1/field/${fieldId}`,
+            method: "GET",
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+            success: function (data) {
+                console.log("Field Details:", data);
+                $("#name").val(data.name);
+                $("#location").val(data.location);
+                $("#extentSize").val(data.extentSize);
+
+                
+                $("#image1").attr("src", `data:image/png;base64,${data.image1}`);
+                $("#image2").attr("src", `data:image/png;base64,${data.image2}`);
+
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching field details:", error);
+                console.error("Response text:", xhr.responseText);
+            }
+        });
+    } else {
+        console.error("Field ID is undefined or invalid.");
+    }
+});
 
 
 
