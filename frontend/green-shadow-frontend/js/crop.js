@@ -1,3 +1,34 @@
+$(document).ready(function () {
+    alert("ok")
+    const $fieldSelect = $("#field");
+
+    const token = localStorage.getItem('token');
+    console.log(token)
+
+    $.ajax({
+        url: "http://localhost:8080/greenshadow/api/v1/field",
+        method: "GET",
+        headers: {
+            Authorization: "Bearer " + token
+        },
+        success: function (data) {
+            console.log("Field API Response:", data);
+            data.forEach(function (field) {
+                $("#field").append(`<option value="${field.fieldId}">${field.name}</option>`);
+
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error("Error loading field IDs:", error);
+        }
+    });
+});
+
+
+
+
+
+
 $('#crop-add-btn').on('click',()=> {
     console.log("add button clicked")
 
@@ -23,11 +54,11 @@ $('#crop-add-btn').on('click',()=> {
         formData.append("cropImage", cropImage);
     }
 
-    const fields = [];
+    const field_id = [];
     $("#field").each(function () {
         const fieldId = $(this).val();
-        if (fields) {
-            fieldId.push(fieldId);
+        if (fieldId) {
+            field_id.push(fieldId);
         }
     });
 
@@ -35,7 +66,7 @@ $('#crop-add-btn').on('click',()=> {
     console.log(token)
 
     $.ajax({
-        url: 'http://localhost:8080/greenshadow/api/v1/field',
+        url: 'http://localhost:8080/greenshadow/api/v1/crops',
         type: 'POST',
         data: formData,
         processData: false,
