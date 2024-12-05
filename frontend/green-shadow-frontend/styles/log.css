@@ -69,3 +69,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+#log-table{
+    margin-top: 40px;
+}
