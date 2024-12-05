@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class StaffController {
     @Autowired
     private StaffService staffService;
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PreAuthorize("hasRole('MANAGER') or hasRole('ADMINISTRATIVE') or hasRole('SCIENTIST')")
     public ResponseEntity<Void> saveStaff(@RequestBody StaffDTO staffDTO) {
         try {
             staffService.saveStaff(staffDTO);
@@ -32,6 +34,7 @@ public class StaffController {
 
     @PutMapping(value = "/{staffId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PreAuthorize("hasRole('MANAGER') or hasRole('ADMINISTRATIVE') or hasRole('SCIENTIST')")
     public void updateStaff(@PathVariable String staffId, @RequestBody StaffDTO staffDTO) {
 
         try {

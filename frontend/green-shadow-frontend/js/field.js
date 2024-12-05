@@ -120,7 +120,7 @@ $("#field-tbl-body").on("click", "tr", function () {
                 $("#location").val(data.location);
                 $("#extentSize").val(data.extentSize);
 
-                
+
                 $("#image1").attr("src", `data:image/png;base64,${data.image1}`);
                 $("#image2").attr("src", `data:image/png;base64,${data.image2}`);
 
