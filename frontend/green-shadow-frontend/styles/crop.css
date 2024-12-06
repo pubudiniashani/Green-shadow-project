@@ -83,3 +83,18 @@ body {
 #crop-table{
     margin-top: 60px;
 }
+
+#crop-add-btn{
+    background-color: #1e96fc;
+    border: none;
+}
+
+#crop-update-btn{
+    background-color: #ffb627;
+    border: none;
+}
+
+#crop-delete-btn{
+    background-color: #ef233c;
+    border: none;
+}

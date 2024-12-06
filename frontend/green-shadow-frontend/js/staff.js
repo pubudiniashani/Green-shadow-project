@@ -1,5 +1,8 @@
 $(document).ready(function () {
-    alert("ok")
+   // alert("ok")
+
+    loadTable()
+
     const $fieldSelect = $("#fieldId");
 
     const token = localStorage.getItem('token');
@@ -87,4 +90,41 @@ $('#add-staff-btn').on('click',()=> {
     });
 
 });
+
+function loadTable() {
+
+    $.ajax({
+        url: 'http://localhost:8080/greenshadow/api/v1/staff',
+        method: 'GET',
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+        },
+        success: function (data) {
+            console.log(data);
+            $("#staff-tbl-body").empty();
+            data.forEach(staff => {
+
+                const record = `
+                    <tr>
+                        <th scope="row">${staff.firstName}</th>
+                        <td>${staff.lastName}</td>
+                        <td>${staff.designation}</td>
+                        <td>${staff.gender}</td>
+                        <td>${staff.jointedDate}</td>
+                        <td>${staff.dob}</td>
+                        <td>${staff.address}</td>
+                        <td>${staff.contactNumber}</td>
+                        <td>${staff.email}</td>
+                        <td>${staff.role}</td>
+                    </tr>
+                `;
+
+                $("#staff-tbl-body").append(record);
+            });
+        },
+        error: function (xhr, status, error) {
+            console.error('Failed to load fields:', error);
+        }
+    });
+}
 

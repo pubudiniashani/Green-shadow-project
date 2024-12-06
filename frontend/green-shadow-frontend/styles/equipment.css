@@ -15,9 +15,9 @@
 
 #dashboard-header i {
     position: absolute;
-    left: 20px; /* Adjust the distance from the left corner */
-    top: 50%; /* Align vertically */
-    font-size: 2rem; /* Adjust icon size */
+    left: 20px;
+    top: 50%;
+    font-size: 2rem;
 
 }
 
@@ -80,4 +80,20 @@ body {
 
 #equipment-table{
     margin-top: 70px;
+}
+
+#add-btn{
+    background-color: #1e96fc;
+    border: none;
+
+}
+
+#update-btn{
+    background-color: #ffb627;
+    border: none;
+}
+
+#delete-btn{
+    background-color: #ef233c;
+    border: none;
 }
